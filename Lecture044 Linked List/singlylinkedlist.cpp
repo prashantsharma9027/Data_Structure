@@ -1,3 +1,5 @@
+//insetion of node at beginning , end , nth position
+
 #include<iostream>
 using namespace std;
 
@@ -37,7 +39,16 @@ void insertAtTail(Node* &tail , int d)
     tail = temp; 
 }
 
-void insertAtPosition(Node* &tail , int position , int d)
+void insertAtHead(Node* &head , int d)
+{
+    //new node created at the head 
+    Node* temp = new Node(d);
+    temp -> next = head;
+    head = temp;
+}
+
+
+void insertAtPosition(Node* &head , int position , int d)
 {
     if(position==1)
     {
@@ -55,24 +66,16 @@ void insertAtPosition(Node* &tail , int position , int d)
         count++;
     }
 
-    //inserting at Last Position
-    if(temp -> next == NULL) 
-    {
-        insertAtTail(tail,d);
-        return ;
-    }
+    Node* newnode = new Node(500);
 
+    newnode->next = temp->next;
+    temp->next = newnode;
+
+    
 
 }
 
 
-void insertAtHead(Node* &head , int d)
-{
-    //new node created at the head 
-    Node* temp = new Node(d);
-    temp -> next = head;
-    head = temp;
-}
 
 int main()
 {
@@ -81,6 +84,8 @@ int main()
     Node* node1 = new Node(10);
     cout<<node1->data<<endl;
     cout<<node1->next<<endl;
+
+
 
     //head pointed to node 1 
     //head creation
@@ -98,7 +103,7 @@ int main()
     insertAtTail(tail , 22);
     print(head);
 
-    insertAtPosition(3 , tail , 100);
+    insertAtPosition(head , 2 , 500);
     print(head);
 
 
