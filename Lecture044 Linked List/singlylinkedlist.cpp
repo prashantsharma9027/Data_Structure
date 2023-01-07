@@ -16,6 +16,16 @@ class Node{
         this->next = NULL;
     }
 
+    ~Node()
+    {
+        int value = this->data;
+        if(this->next!=NULL)
+        {
+            delete next;
+            this->next = NULL;
+        }
+    }
+
 };
 
 void print(Node* &head)
@@ -48,7 +58,7 @@ void insertAtHead(Node* &head , int d)
 }
 
 
-void insertAtPosition(Node* &head , int position , int d)
+void insertAtPosition(Node* &head , Node* &tail ,int position , int d)
 {
     if(position==1)
     {
@@ -66,12 +76,47 @@ void insertAtPosition(Node* &head , int position , int d)
         count++;
     }
 
+    if(temp->next == NULL)
+    {
+        insertAtTail(tail,d);
+        return;
+    }
+
     Node* newnode = new Node(500);
 
     newnode->next = temp->next;
     temp->next = newnode;
+}
 
-    
+void deleteNode(Node* &head , int position )
+{
+    //deletion at starting
+    if(position == 1 )
+    {
+        Node* temp = head;
+        head=head->next;
+        delete temp;
+    }
+    //deletion at any position or at end 
+    else
+    {
+        Node* curr = head;
+        Node* prev = NULL;
+
+        int count = 1;
+
+        while(count<position)
+        {
+            prev = curr;
+            curr = curr->next;
+            count++;
+        }
+
+        prev->next=curr->next;
+        curr->next = NULL;
+        delete curr;
+
+    }
 
 }
 
@@ -90,9 +135,10 @@ int main()
     //head pointed to node 1 
     //head creation
     Node* head = node1;
+    Node* tail = node1;
     print(head);
     //tail creation
-    Node* tail = node1;
+    
     print(tail);
 
 
@@ -103,10 +149,11 @@ int main()
     insertAtTail(tail , 22);
     print(head);
 
-    insertAtPosition(head , 2 , 500);
+    insertAtPosition(head ,tail, 2 , 500);
     print(head);
+    
 
-
-
+    deleteNode(head , 4);
+    print(head);
     return 0;
 }
