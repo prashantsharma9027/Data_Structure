@@ -72,10 +72,8 @@ int fastslowmiddle(Node* &head)
             fast=fast->next;
         }
         slow = slow->next;
-    }
-
     return slow->data;
-    
+    }
 }
 
 
