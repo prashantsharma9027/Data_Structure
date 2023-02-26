@@ -1,13 +1,14 @@
 //****************************************************************************
 //  HEADER FILE USED IN PROJECT
 //****************************************************************************
-
+#include<bits/stdc++.h>
 #include<iostream>
 #include<process.h>
 #include <conio.h>
 #include<fstream>
 #include<iomanip>
 #include<string>
+#include<windows.h>
 
 
 using namespace std;
@@ -15,7 +16,13 @@ using namespace std;
 //****************************************************************************
 // CLASS USED IN PROJECT
 //****************************************************************************
-
+void gotoxy(int x, int y)
+{
+    COORD coordinate;
+    coordinate.X = x;
+    coordinate.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coordinate);
+}
 class product
 {
    char pno[5];
@@ -403,7 +410,7 @@ void admin_menu()
 //****************************************************************************
 // THE MAIN FUNCTION OF PROGRAM
 //****************************************************************************
-void main()
+int main()
 {
     char ch;
     intro();
